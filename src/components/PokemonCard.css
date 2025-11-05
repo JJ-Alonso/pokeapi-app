@@ -1,0 +1,82 @@
+.pokemon-card {
+  width: 170px;
+  padding: 18px;
+  border-radius: 15px;
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.pokemon-card img {
+  width: 96px;
+  height: 96px;
+  image-rendering: pixelated;
+}
+
+.pokemon-card h2 {
+  font-size: 1rem;
+  color: white;
+  margin: 0;
+}
+
+/* Tipos en mini-etiquetas */
+.types {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.type {
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  box-shadow: 0 0 5px currentColor;
+}
+
+/* 💫 Neon colors for each main type */
+.type-normal    { background: #a8a77a; box-shadow: 0 0 10px #a8a77a; }
+.type-fire      { background: #ee8130; box-shadow: 0 0 10px #ff9933; }
+.type-water     { background: #6390f0; box-shadow: 0 0 10px #3c8dff; }
+.type-electric  { background: #f7d02c; box-shadow: 0 0 10px #ffef5c; color: black; }
+.type-grass     { background: #7ac74c; box-shadow: 0 0 10px #82ff7a; color: black; }
+.type-ice       { background: #96d9d6; box-shadow: 0 0 10px #a8ffff; color: black; }
+.type-fighting  { background: #c22e28; box-shadow: 0 0 10px #ff4f4f; }
+.type-poison    { background: #a33ea1; box-shadow: 0 0 10px #d162ff; }
+.type-ground    { background: #e2bf65; box-shadow: 0 0 10px #ffe18d; color: black; }
+.type-flying    { background: #a98ff3; box-shadow: 0 0 10px #d1b6ff; }
+.type-psychic   { background: #f95587; box-shadow: 0 0 10px #ff66b3; }
+.type-bug       { background: #a6b91a; box-shadow: 0 0 10px #e4ff65; color: black; }
+.type-rock      { background: #b6a136; box-shadow: 0 0 10px #f5da7e; color: black; }
+.type-ghost     { background: #735797; box-shadow: 0 0 10px #c085ff; }
+.type-dragon    { background: #6f35fc; box-shadow: 0 0 10px #a066ff; }
+.type-dark      { background: #705746; box-shadow: 0 0 10px #c78a6f; }
+.type-steel     { background: #b7b7ce; box-shadow: 0 0 10px #d8d8ff; color: black; }
+.type-fairy     { background: #d685ad; box-shadow: 0 0 10px #ff9edb; color: black; }
+
+/* 💡 Neon border glow depending on main type */
+[class*="type-"] {
+  border: 2px solid currentColor;
+}
+
+.pokemon-card.type-fire:hover     { box-shadow: 0 0 25px 4px #ff6b2b; }
+.pokemon-card.type-water:hover    { box-shadow: 0 0 25px 4px #3caeff; }
+.pokemon-card.type-grass:hover    { box-shadow: 0 0 25px 4px #6cff5c; }
+.pokemon-card.type-electric:hover { box-shadow: 0 0 25px 4px #ffe863; }
+.pokemon-card.type-psychic:hover  { box-shadow: 0 0 25px 4px #ff62d1; }
+.pokemon-card.type-dragon:hover   { box-shadow: 0 0 25px 4px #a265ff; }
+.pokemon-card.type-ghost:hover    { box-shadow: 0 0 25px 4px #c985ff; }
+.pokemon-card.type-dark:hover     { box-shadow: 0 0 25px 4px #b6744c; }
