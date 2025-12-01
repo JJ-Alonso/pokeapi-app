@@ -1,61 +1,42 @@
-import { useEffect, useState } from "react";
-import PokemonCard from "./components/PokemonCard";
-import "./App.css";
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
+import Home from "./components/Home.jsx";
+import PokemonPage from "./components/PokemonPage";
 
-function App() {
-  const [pokemons, setPokemons] = useState([]);
-  const [nextUrl, setNextUrl] = useState("https://pokeapi.co/api/v2/pokemon?limit=20");
-  const [loading, setLoading] = useState(false);
-
-  const fetchPokemons = async () => {
-    if (!nextUrl) return;
-    setLoading(true);
-    const res = await fetch(nextUrl);
-    const data = await res.json();
-
-    // Guardar la siguiente URL (para la siguiente página)
-    setNextUrl(data.next);
-
-    // Obtener los detalles de cada Pokémon
-    const detailedData = await Promise.all(
-      data.results.map(async (pokemon) => {
-        const res = await fetch(pokemon.url);
-        const details = await res.json();
-        return {
-          id: details.id,
-          name: details.name,
-          image: details.sprites.front_default,
-          types: details.types.map((t) => t.type.name),
-        };
-      })
-    );
-
-    // Añadirlos a los anteriores
-    setPokemons((prev) => [...prev, ...detailedData]);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchPokemons();
-  }, []);
-
+export default function App() {
   return (
-    <div className="App">
-      <h1>Pokédex</h1>
-      <p className="subtitle">“Explora el mundo Pokémon con estilo neón”</p>
-      <div className="pokemon-grid">
-        {pokemons.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
-      </div>
+    <>
+      <header style={styles.header}>
+        <Link to="/" style={styles.homeLink}>
+          <FaHome size={24} />
+        </Link>
+        <h1 style={styles.title}>Pokédex Mejorada</h1>
+      </header>
 
-      {nextUrl && (
-        <button onClick={fetchPokemons} disabled={loading}>
-          {loading ? "Cargando..." : "Cargar más"}
-        </button>
-      )}
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pokemon/:id" element={<PokemonPage />} />
+      </Routes>
+    </>
   );
 }
 
-export default App;
+const styles = {
+  header: {
+    display: "flex",
+    alignItems: "center",
+    gap: "20px",
+    padding: "20px",
+    background: "linear-gradient(90deg, #ff5959, #ffcc00)",
+    color: "white",
+    fontFamily: "Poppins",
+  },
+  homeLink: {
+    color: "white",
+    textDecoration: "none",
+  },
+  title: {
+    margin: 0,
+  },
+};
